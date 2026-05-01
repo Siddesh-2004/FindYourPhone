@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface-variant": "#464554",
+                        "surface": "#f7f9fb",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed-variant": "#2f2ebe",
+                        "on-primary-container": "#fffbff",
+                        "inverse-on-surface": "#eff1f3",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#6063ee",
+                        "surface-container-high": "#e6e8ea",
+                        "background": "#f7f9fb",
+                        "tertiary-container": "#6473b6",
+                        "surface-container": "#eceef0",
+                        "tertiary-fixed": "#dde1ff",
+                        "surface-container-highest": "#e0e3e5",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed-dim": "#b8c4ff",
+                        "on-secondary-fixed-variant": "#3f465c",
+                        "on-secondary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "inverse-primary": "#c0c1ff",
+                        "on-secondary-fixed": "#131b2e",
+                        "on-surface": "#191c1e",
+                        "primary-fixed-dim": "#c0c1ff",
+                        "on-background": "#191c1e",
+                        "inverse-surface": "#2d3133",
+                        "on-error": "#ffffff",
+                        "surface-container-low": "#f2f4f6",
+                        "surface-variant": "#e0e3e5",
+                        "secondary-container": "#dae2fd",
+                        "surface-dim": "#d8dadc",
+                        "surface-bright": "#f7f9fb",
+                        "tertiary": "#4b5a9b",
+                        "secondary": "#565e74",
+                        "on-error-container": "#93000a",
+                        "primary-fixed": "#e1e0ff",
+                        "secondary-fixed-dim": "#bec6e0",
+                        "on-tertiary-container": "#00031d",
+                        "primary": "#4648d4",
+                        "outline-variant": "#c7c4d7",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed-variant": "#334282",
+                        "on-secondary-container": "#5c647a",
+                        "surface-tint": "#494bd6",
+                        "outline": "#767586",
+                        "secondary-fixed": "#dae2fd",
+                        "on-tertiary-fixed": "#001354",
+                        "on-primary-fixed": "#07006c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xl": "80px",
+                        "sm": "12px",
+                        "gutter": "24px",
+                        "base": "8px",
+                        "xs": "4px",
+                        "container-max": "1280px",
+                        "lg": "48px",
+                        "md": "24px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "h1": ["Plus Jakarta Sans"],
+                        "h3": ["Plus Jakarta Sans"],
+                        "h2": ["Plus Jakarta Sans"],
+                        "label-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "h1": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "h3": ["24px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                        "h2": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "label-sm": ["14px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.5);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background font-body-md text-on-background min-h-screen flex flex-col items-center">
+<!-- Progress Bar (Absolute Top) -->
+<div class="fixed top-0 left-0 w-full h-1 bg-surface-container-highest z-[60]">
+<div class="h-full bg-primary transition-all duration-500" style="width: 30%;"></div>
+</div>
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-6 md:px-12 py-4 max-w-[1280px] mx-auto backdrop-blur-xl bg-white/80 dark:bg-slate-950/80 border-b border-slate-200/50 dark:border-slate-800/50 shadow-[0_4px_20px_rgba(99,102,241,0.05)]">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-indigo-600 dark:text-indigo-400" data-icon="devices">devices</span>
+<span class="text-xl font-extrabold tracking-tighter text-slate-900 dark:text-white">SmartFind</span>
+</div>
+<div class="flex items-center gap-2 bg-indigo-50 dark:bg-indigo-900/20 px-3 py-1.5 rounded-full border border-indigo-100 dark:border-indigo-800">
+<span class="material-symbols-outlined text-indigo-600 dark:text-indigo-400 text-sm" data-icon="smartphone">smartphone</span>
+<span class="font-['Plus_Jakarta_Sans'] text-sm font-semibold tracking-tight text-indigo-600 dark:text-indigo-400">Phone Finder</span>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 w-full px-6 pt-32 pb-40 flex flex-col justify-center gap-base pt-24 pb-12 max-w-3xl">
+<!-- Question Header Section -->
+<div class="text-center mb-10">
+<h2 class="font-h2 text-h2 text-slate-900 whitespace-nowrap">What is your primary use case?</h2>
+</div>
+<!-- Options Bento-style Grid -->
+<div class="grid gap-3 grid-cols-2">
+<!-- Option 1: Active State Example -->
+<button class="flex items-center gap-md glass-card rounded-xl border-2 border-primary shadow-[0_4px_20px_rgba(99,102,241,0.12)] hover:scale-[1.02] transition-all duration-300 group p-4 text-left">
+<div class="w-6 h-6 shrink-0 rounded-full border-2 border-primary flex items-center justify-center">
+<div class="w-3 h-3 rounded-full bg-primary"></div>
+</div>
+<div class="flex-1">
+<p class="font-h3 text-body-md text-slate-900 mb-0">Photography &amp; Video</p>
+<p class="text-on-surface-variant text-xs">Professional lenses and 8K recording</p>
+</div>
+</button>
+<!-- Option 2 -->
+<button class="flex items-center gap-md glass-card rounded-xl border border-slate-200/50 shadow-[0_4px_20px_rgba(99,102,241,0.05)] hover:scale-[1.02] hover:border-indigo-300 transition-all duration-300 group p-4 text-left">
+<div class="w-6 h-6 shrink-0 rounded-full border-2 border-slate-200"></div>
+<div class="flex-1">
+<p class="font-h3 text-body-md text-slate-900 mb-0">Gaming</p>
+<p class="text-on-surface-variant text-xs">High refresh rates and powerful GPU</p>
+</div>
+</button>
+<!-- Option 3 -->
+<button class="flex items-center gap-md glass-card rounded-xl border border-slate-200/50 shadow-[0_4px_20px_rgba(99,102,241,0.05)] hover:scale-[1.02] hover:border-indigo-300 transition-all duration-300 group p-4 text-left">
+<div class="w-6 h-6 shrink-0 rounded-full border-2 border-slate-200"></div>
+<div class="flex-1">
+<p class="font-h3 text-body-md text-slate-900 mb-0">Daily Productivity</p>
+<p class="text-on-surface-variant text-xs">Multitasking, email, and long battery</p>
+</div>
+</button>
+<!-- Option 4 -->
+<button class="flex items-center gap-md glass-card rounded-xl border border-slate-200/50 shadow-[0_4px_20px_rgba(99,102,241,0.05)] hover:scale-[1.02] hover:border-indigo-300 transition-all duration-300 group p-4 text-left">
+<div class="w-6 h-6 shrink-0 rounded-full border-2 border-slate-200"></div>
+<div class="flex-1">
+<p class="font-h3 text-body-md text-slate-900 mb-0">Basic Social &amp; Calls</p>
+<p class="text-on-surface-variant text-xs">Light usage, messaging, and simplicity</p>
+</div>
+</button>
+</div>
+</main>
+<!-- Bottom Navigation Controls -->
+<!-- Background Decoration for Visual Depth -->
+<div class="fixed inset-0 -z-10 pointer-events-none overflow-hidden">
+<div class="absolute -top-[10%] -left-[10%] w-[50%] h-[50%] bg-indigo-100/30 rounded-full blur-[120px]"></div>
+<div class="absolute -bottom-[10%] -right-[10%] w-[40%] h-[40%] bg-purple-100/20 rounded-full blur-[100px]"></div>
+</div>
+<button class="fixed left-6 top-1/2 -translate-y-1/2 z-[100] flex flex-col items-center gap-2 p-4 rounded-full bg-white/80 backdrop-blur-md border border-slate-200 shadow-lg text-indigo-600 hover:scale-110 transition-all duration-300">
+<span class="material-symbols-outlined text-2xl">arrow_back</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Back</span>
+</button><button class="fixed right-6 top-1/2 -translate-y-1/2 z-[100] flex flex-col items-center gap-2 p-6 rounded-full bg-primary text-white shadow-[0_10px_25px_-5px_rgba(70,72,212,0.4)] hover:scale-110 active:scale-95 transition-all duration-300">
+<span class="material-symbols-outlined text-3xl">arrow_forward</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Next</span>
+</button></body></html>

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-secondary-fixed": "#131b2e",
+                      "on-secondary-fixed-variant": "#3f465c",
+                      "outline": "#767586",
+                      "secondary-fixed": "#dae2fd",
+                      "on-error-container": "#93000a",
+                      "background": "#f7f9fb",
+                      "surface-bright": "#f7f9fb",
+                      "outline-variant": "#c7c4d7",
+                      "on-tertiary-fixed-variant": "#334282",
+                      "on-tertiary-fixed": "#001354",
+                      "primary-fixed": "#e1e0ff",
+                      "surface-dim": "#d8dadc",
+                      "surface-container-high": "#e6e8ea",
+                      "on-surface": "#191c1e",
+                      "inverse-primary": "#c0c1ff",
+                      "error-container": "#ffdad6",
+                      "on-primary-fixed-variant": "#2f2ebe",
+                      "surface-tint": "#494bd6",
+                      "primary-fixed-dim": "#c0c1ff",
+                      "inverse-surface": "#2d3133",
+                      "on-primary-fixed": "#07006c",
+                      "surface": "#f7f9fb",
+                      "surface-container-highest": "#e0e3e5",
+                      "on-background": "#191c1e",
+                      "primary": "#4648d4",
+                      "on-error": "#ffffff",
+                      "secondary-fixed-dim": "#bec6e0",
+                      "on-surface-variant": "#464554",
+                      "surface-container": "#eceef0",
+                      "on-tertiary-container": "#00031d",
+                      "on-secondary-container": "#5c647a",
+                      "on-primary-container": "#fffbff",
+                      "tertiary-fixed-dim": "#b8c4ff",
+                      "surface-container-low": "#f2f4f6",
+                      "primary-container": "#6063ee",
+                      "tertiary-container": "#6473b6",
+                      "secondary-container": "#dae2fd",
+                      "on-tertiary": "#ffffff",
+                      "tertiary-fixed": "#dde1ff",
+                      "on-primary": "#ffffff",
+                      "surface-variant": "#e0e3e5",
+                      "secondary": "#565e74",
+                      "on-secondary": "#ffffff",
+                      "surface-container-lowest": "#ffffff",
+                      "inverse-on-surface": "#eff1f3",
+                      "tertiary": "#4b5a9b",
+                      "error": "#ba1a1a"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "xs": "4px",
+                      "sm": "12px",
+                      "md": "24px",
+                      "xl": "80px",
+                      "base": "8px",
+                      "gutter": "24px",
+                      "container-max": "1280px",
+                      "lg": "48px"
+              },
+              "fontFamily": {
+                      "h3": ["Plus Jakarta Sans"],
+                      "h1": ["Plus Jakarta Sans"],
+                      "body-md": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "label-sm": ["Inter"],
+                      "h2": ["Plus Jakarta Sans"]
+              },
+              "fontSize": {
+                      "h3": ["24px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                      "h1": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                      "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "label-sm": ["14px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "h2": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .glass-nav {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #e0e3e5;
+            border-radius: 10px;
+        }
+        .match-glow {
+            box-shadow: 0 0 15px rgba(99, 102, 241, 0.1);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background font-body-md text-on-background antialiased overflow-hidden h-screen flex flex-col">
+<!-- Top Navigation Bar -->
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col md:flex-row overflow-hidden max-w-[1440px] mx-auto w-full">
+<!-- Left Panel: Scrollable Matches -->
+<aside class="w-full md:w-[400px] flex flex-col border-r border-outline-variant/30 bg-white shadow-sm z-10">
+<div class="p-6 border-b border-outline-variant/20 flex justify-between items-center bg-surface-container-lowest">
+<h2 class="font-h3 text-h3 text-on-surface">Top 10 Matches</h2>
+</div>
+<div class="flex-1 overflow-y-auto custom-scrollbar p-sm space-y-sm"><!-- Match 1 (Active) -->
+<div class="group relative bg-primary/5 border-2 border-primary p-md rounded-xl cursor-pointer transition-all hover:shadow-md">
+<div class="flex justify-between items-start mb-base">
+<span class="font-h2 text-h3 text-primary">01</span>
+<div class="flex flex-col items-end">
+<span class="text-primary font-bold text-lg">98%</span>
+<span class="text-[10px] uppercase font-bold text-primary/60 tracking-widest">Match Score</span>
+</div>
+</div>
+<h3 class="font-h3 text-body-lg text-on-surface mb-xs">NexGen Pro X1</h3>
+<p class="text-on-surface-variant font-body-md text-sm">Best for Photography &amp; Power</p>
+<div class="absolute right-4 bottom-4 opacity-100">
+<span class="material-symbols-outlined text-primary">arrow_forward_ios</span>
+</div>
+</div>
+<!-- Match 2 -->
+<div class="group bg-white border border-outline-variant/30 p-md rounded-xl cursor-pointer transition-all hover:border-primary/50 hover:bg-surface-container-low">
+<div class="flex justify-between items-start mb-base">
+<span class="font-h2 text-h3 text-primary/40">02</span>
+<div class="flex flex-col items-end text-right">
+<span class="text-on-surface font-bold text-lg">94%</span>
+<span class="text-[10px] uppercase font-bold text-on-surface-variant/40 tracking-widest">Match Score</span>
+</div>
+</div>
+<h3 class="font-h3 text-body-lg text-on-surface mb-xs">Lumina Ultra 5G</h3>
+<p class="text-on-surface-variant font-body-md text-sm">Optimized for Creator Workflow</p>
+</div>
+<!-- Match 3 -->
+<div class="group bg-white border border-outline-variant/30 p-md rounded-xl cursor-pointer transition-all hover:border-primary/50 hover:bg-surface-container-low">
+<div class="flex justify-between items-start mb-base">
+<span class="font-h2 text-h3 text-primary/40">03</span>
+<div class="flex flex-col items-end text-right">
+<span class="text-on-surface font-bold text-lg">91%</span>
+<span class="text-[10px] uppercase font-bold text-on-surface-variant/40 tracking-widest">Match Score</span>
+</div>
+</div>
+<h3 class="font-h3 text-body-lg text-on-surface mb-xs">Titan Slate M1</h3>
+<p class="text-on-surface-variant font-body-md text-sm">Industrial Grade Durability</p>
+</div>
+<!-- Match 4 -->
+<div class="group bg-white border border-outline-variant/30 p-md rounded-xl cursor-pointer transition-all hover:border-primary/50 hover:bg-surface-container-low">
+<div class="flex justify-between items-start mb-base">
+<span class="font-h2 text-h3 text-primary/40">04</span>
+<div class="flex flex-col items-end text-right">
+<span class="text-on-surface font-bold text-lg">89%</span>
+<span class="text-[10px] uppercase font-bold text-on-surface-variant/40 tracking-widest">Match Score</span>
+</div>
+</div>
+<h3 class="font-h3 text-body-lg text-on-surface mb-xs">Zenith Flow Fold</h3>
+<p class="text-on-surface-variant font-body-md text-sm">Multitasking Revolution</p>
+</div>
+<!-- Match 5 -->
+<div class="group bg-white border border-outline-variant/30 p-md rounded-xl cursor-pointer transition-all hover:border-primary/50 hover:bg-surface-container-low">
+<div class="flex justify-between items-start mb-base">
+<span class="font-h2 text-h3 text-primary/40">05</span>
+<div class="flex flex-col items-end text-right">
+<span class="text-on-surface font-bold text-lg">87%</span>
+<span class="text-[10px] uppercase font-bold text-on-surface-variant/40 tracking-widest">Match Score</span>
+</div>
+</div>
+<h3 class="font-h3 text-body-lg text-on-surface mb-xs">Aura Beam 14</h3>
+<p class="text-on-surface-variant font-body-md text-sm">Minimalist Aesthetic Leader</p>
+</div></div>
+</aside>
+<!-- Right Panel: Detailed View -->
+<section class="flex-1 overflow-y-auto bg-surface-container-lowest p-6 md:p-xl custom-scrollbar">
+<div class="max-w-[800px] mx-auto">
+<!-- Product Introduction Section -->
+<div class="bg-white border border-outline-variant/30 rounded-[2rem] p-8 md:p-12 mb-xl shadow-sm">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-lg items-center">
+<div class="order-2 md:order-1">
+<h1 class="font-h1 text-h1 text-on-surface mb-sm">NexGen Pro X1</h1>
+<div class="flex items-baseline gap-sm mb-md">
+<span class="font-h2 text-h2 text-primary">$1,199.00</span>
+<span class="text-on-surface-variant line-through font-body-md">$1,349.00</span>
+</div>
+<p class="font-body-lg text-on-surface-variant leading-relaxed">
+                            The NexGen Pro X1 is engineered for those who demand uncompromising performance. With an AI-driven triple-lens system and the latest hyper-efficient silicon, it aligns perfectly with your requirements for high-end mobile photography and heavy multitasking.
+                        </p>
+</div>
+<div class="order-1 md:order-2 relative overflow-hidden flex items-center justify-center">
+<img alt="Premium Smartphone" class="w-full h-auto max-h-[450px] object-contain drop-shadow-2xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZOQxev2dz7wW6hiPnWT39SzAEfvwS990N-0O3sveeTcePvk_Ah6SQA8XWrR1GNlpKIuDiP_IlWAkgewWV-4hN16YADL5bwkJLuznjJzz_ItyL7vHlwOXuuJeVy50NngTo9xWtcBJepkH_AydADToe7Pw-56FskKUlX_XOqu93AVZw3QL1qNEQkdMnGur6P5SWm7wygUfOUPq5MHNYsAwuPguFHBfMDnxEMujwrMCuPNJdiphey6uVWOR02UYMcEp0ODdxwVCEKpO2"/>
+</div>
+</div>
+</div>
+<!-- Detailed Specs Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md mb-xl">
+<div class="bg-white p-md rounded-xl border border-outline-variant/20 shadow-sm">
+<div class="flex items-center gap-base mb-sm text-primary">
+<span class="material-symbols-outlined">memory</span>
+<span class="font-label-sm uppercase">Processor</span>
+</div>
+<h4 class="font-h3 text-body-lg text-on-surface">Snapdragon 8 Gen 3</h4>
+<p class="text-on-surface-variant text-sm mt-xs">Hyper-threaded AI processing</p>
+</div>
+<div class="bg-white p-md rounded-xl border border-outline-variant/20 shadow-sm">
+<div class="flex items-center gap-base mb-sm text-primary">
+<span class="material-symbols-outlined">camera_enhance</span>
+<span class="font-label-sm uppercase">Camera</span>
+</div>
+<h4 class="font-h3 text-body-lg text-on-surface">200MP Triple Array</h4>
+<p class="text-on-surface-variant text-sm mt-xs">Periscope zoom &amp; Night vision</p>
+</div>
+<div class="bg-white p-md rounded-xl border border-outline-variant/20 shadow-sm">
+<div class="flex items-center gap-base mb-sm text-primary">
+<span class="material-symbols-outlined">battery_charging_full</span>
+<span class="font-label-sm uppercase">Battery</span>
+</div>
+<h4 class="font-h3 text-body-lg text-on-surface">5500mAh / 120W</h4>
+<p class="text-on-surface-variant text-sm mt-xs">Full charge in 18 minutes</p>
+</div>
+</div>
+<!-- "Why it's a match" Section -->
+<div class="bg-gradient-to-br from-primary to-primary-container p-lg rounded-2xl text-on-primary">
+<h3 class="font-h3 text-h3 mb-md flex items-center gap-base">
+<span class="material-symbols-outlined">auto_awesome</span>
+                        SmartFind Intelligence Report
+                    </h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+<div class="space-y-md">
+<div class="flex items-start gap-md">
+<span class="material-symbols-outlined p-2 bg-white/20 rounded-lg">photo_camera</span>
+<div>
+<h5 class="font-bold">Photography Priority</h5>
+<p class="text-on-primary/80 text-sm">Based on your upload of 'Landscape Photography', this sensor offers the best dynamic range in its class.</p>
+</div>
+</div>
+<div class="flex items-start gap-md">
+<span class="material-symbols-outlined p-2 bg-white/20 rounded-lg">speed</span>
+<div>
+<h5 class="font-bold">Power-User Profile</h5>
+<p class="text-on-primary/80 text-sm">Your multi-app usage data suggests you need at least 12GB of RAM; this device provides 16GB.</p>
+</div>
+</div>
+</div>
+<div class="bg-white/10 p-md rounded-xl backdrop-blur-sm border border-white/20">
+<h5 class="font-bold mb-sm">AI Verdict</h5>
+<p class="text-on-primary/90 text-sm leading-relaxed">
+                                "The NexGen Pro X1 outperforms 98% of alternatives for your specific blend of media consumption and professional photography. While more expensive than your base budget, the 3-year residual value makes it a superior investment."
+                            </p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Floating Action for Quick Filter (Contextual) -->
+<button class="fixed bottom-8 right-8 bg-on-surface text-white p-4 rounded-full shadow-2xl flex items-center gap-base hover:scale-110 active:scale-95 transition-all z-50 md:hidden">
+<span class="material-symbols-outlined">filter_list</span>
+<span class="font-label-sm">Refine Search</span>
+</button>
+</body></html>
