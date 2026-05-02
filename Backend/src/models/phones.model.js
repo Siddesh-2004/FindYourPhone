@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const phoneSchema = new mongoose.Schema(
   {
-    name:           { type: String, required: true, trim: true,lowercase: true },
+    name:           { type: String, required: true},
     price:          { type: Number, default: null },
     rating:         { type: Number, default: null },
     specs_score:    { type: Number, default: null },
