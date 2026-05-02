@@ -26,6 +26,8 @@ app.use(express.static("public"));
 app.use(cookieParser());
 
 
+import phoneRoutes from "./routes/phones.route.js"
 
+app.use("/api/v1/phones", phoneRoutes);
 
 export default app;

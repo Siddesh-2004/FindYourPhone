@@ -44,6 +44,6 @@ phoneSchema.index({ "5G": 1 });
 phoneSchema.index({ NFC: 1 });
 phoneSchema.index({ os_brand: 1 });
 
-const Phone = mongoose.model("Phone", phoneSchema);
+const PhoneModel = mongoose.model("Phone", phoneSchema);
 
-export default Phone;
+export default PhoneModel;
