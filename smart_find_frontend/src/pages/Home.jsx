@@ -1,7 +1,10 @@
+import {Link} from "react-router"
+import { useNavigate } from "react-router";
 const PHONE_IMG = "https://lh3.googleusercontent.com/aida-public/AB6AXuCSndcAYjhxuN38AIhkJgiGQM3n7d7_8R8Ki8QZB8jvqkpimb2-yJizQrLICGDKPabcp3JVNQGx1Wx1kgRm9zmGvSrafIgHPhjiwSaF8NM2ulpX7G_mEtQn0d-bozoJj5fe_Xy5ajcX7_s0llSvptcpjY_2O3vxtRFEg63TwOkcpY0M1X-D5z0EOdy4nhNR2UlbWHpMbPS4bH92CUvMLabNYdOkH9TP7z8yR6c8otmMqF_2122_h39Zz2cmXYG5q2Hn8ZCvDc-bJTsQ";
 const LAPTOP_IMG = "https://lh3.googleusercontent.com/aida-public/AB6AXuDtouFeHoOUozdqcB2Uh0k78QADOFWdMmzcG_wUBgcRkgEkkEtLRGzXtEra--VUhK_C_tQ1xnWY6nZh2ZalTBVGirpitwW5THE7k-kOkQj2ikvGJj978iMuRt2EE0RzUoM0fd7i6Dw14Y-MES9A9snwRiqoV0W6TAhYYPagtgQPPmAyq-SgvadZLFCJG75g0jA58Z4G4dZlQc3JRaGoDfOEWJe8ytprF8dpq9lL96EqfzdxqkjtrsLBR0NC8_YIP8YyoUho98rjcjvY";
 
 export default function DeviceSelector() {
+  const navigate=useNavigate();
   return (
     <>
       <style>{`
@@ -48,9 +51,11 @@ export default function DeviceSelector() {
                 <p className="text-indigo-200 text-base max-w-xs mb-6 opacity-80 leading-relaxed">
                   Locate your mobile device in seconds with AI-powered precision tracking.
                 </p>
-                <button className="w-full md:w-auto px-10 py-4 bg-indigo-600 text-white font-bold rounded-xl border border-indigo-400/50 hover:bg-indigo-500 hover:scale-105 active:scale-95 transition-all duration-300 shadow-xl shadow-indigo-900/40 text-lg">
-                  Track Now
+              
+                <button className="w-full md:w-auto px-10 py-4 bg-indigo-600 text-white font-bold rounded-xl border border-indigo-400/50 hover:bg-indigo-500 hover:scale-105 active:scale-95 transition-all duration-300 shadow-xl shadow-indigo-900/40 text-lg" onClick={()=>navigate("/questions/phones")}>
+                  Find Phone
                 </button>
+               
               </div>
             </section>
 
@@ -85,9 +90,11 @@ export default function DeviceSelector() {
                 <p className="text-slate-300 text-base max-w-xs mb-6 opacity-80 leading-relaxed">
                   Never lose your workstation. Real-time location pings and remote security.
                 </p>
-                <button className="w-full md:w-auto px-10 py-4 bg-slate-100 text-slate-950 font-bold rounded-xl border border-slate-300 hover:bg-white hover:scale-105 active:scale-95 transition-all duration-300 shadow-xl shadow-black/40 text-lg">
-                  Secure Device
+             
+                <button className="w-full md:w-auto px-10 py-4 bg-slate-100 text-slate-950 font-bold rounded-xl border border-slate-300 hover:bg-white hover:scale-105 active:scale-95 transition-all duration-300 shadow-xl shadow-black/40 text-lg" onClick={()=>navigate("/questions/laptop")}>
+                  Find Your Laptop
                 </button>
+               
               </div>
             </section>
 

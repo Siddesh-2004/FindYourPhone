@@ -32,9 +32,9 @@ const getPhoneRecommendations = asyncHandler(async (req, res) => {
     .status(200)
     .json(
       new apiResponse(
-        200,
         phoneDetails,
         "Phone recommendations retrieved successfully",
+        200
       ),
     );
 });

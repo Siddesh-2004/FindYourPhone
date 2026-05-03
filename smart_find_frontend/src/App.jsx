@@ -1,21 +1,27 @@
-import React from 'react'
+import Layout from './Layout'
+import Home from "./pages/Home.jsx"
 import Landing from './pages/Landing'
-import Home from './pages/Home'
-import Question from './components/Question'
-import RankingCard from './components/RankingCard'
-import Ranking from './components/Ranking'
-import ProductDetails from './components/ProductDetails'
-import Result from './pages/Result'
+import QuestionForPhoneAndLaptop from './pages/QuestionForPhoneAndLaptop.jsx'
+import { createBrowserRouter,createRoutesFromElements,Route,RouterProvider } from 'react-router-dom'
+
+
+import Result from './pages/Result.jsx'
+
 function App() {
+ 
+
+  const router=createBrowserRouter(createRoutesFromElements(
+    <Route path='/' element={<Layout/>} >
+      <Route path='' element={<Landing />} />
+      <Route path='home' element={<Home/>} />
+      <Route path='questions/:device' element={<QuestionForPhoneAndLaptop setRecommendations/>} />
+     <Route path='results' element={<Result />} />
+      
+    </Route>
+  ))
   return (
-    // <Landing />
-    // <Home />
-    // <Question />
-    // <RankingCard />
-    //  <Ranking />
-      // <ProductDetails />
-      <Result/>
+    <RouterProvider router={router} />
   )
 }
 
-export default App  
+export default App

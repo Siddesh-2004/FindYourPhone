@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router";
 
 const PHONE_IMG = "https://lh3.googleusercontent.com/aida-public/AB6AXuBsyTlslec6VxZEv1QTzZQ7pHwO8xNxx1uL4kH3I348EHGsiPtSpsSnUFYqqqh9aDSf4-ML_E5oaLSSVOgbXEpc7JH8xxGmWdqMKnBzujrz3890fUmTWKh6tYbNt8lAyGToxOgwpmnsEExETIDmgF7G8_lA3yi9hRol0Ay1cxdHcM7ETJKmAlGLNRsLJGINXg2QGSZSEGRoqN_9qN2cjdcKvNdjKEdSvN7jmz3m2uEXDfSmurVP_08PLy8mC8i0HJaLxlWVdzml2wTs";
 const LAPTOP_IMG = "https://lh3.googleusercontent.com/aida-public/AB6AXuB6Vib7q1k6YbOo6xAHZkjEzuESxWaU1GAuEXZfT-dhJALyqxW4fxePsEVoq-39QXLr1Xh_mxULkcFYivtFM2V2KTwKHyxlLkZuzPl447AyYUU2Zkz2qdT2gVCafN0qHjMw17XFgg4LPw9diwRKVHgvbKym0PR5jLEm7MphhqfJxaz-t7mooWX2ZOm8n1UWE77TG4UNv5LNO2kBZ3eJ_y2un_FFeRhSWi0Gfcy9T7pKS2-QpGPzbwF7Ph92GWVpJ2sXVYHpPieApOA2";
@@ -23,9 +24,11 @@ function Navbar() {
             SmartFind
           </span>
         </div>
+        <Link to="home">
         <button className="bg-indigo-600 text-white px-6 py-2.5 rounded-full font-bold hover:scale-105 transition-all shadow-lg shadow-indigo-200">
           Find My Device
         </button>
+        </Link>
       </div>
     </nav>
   );
@@ -46,14 +49,16 @@ function Hero() {
             SmartFind learns what matters to you and recommends the perfect phone or laptop — in seconds. No more endless specs, just your perfect match.
           </p>
           <div className="pt-4">
+            <Link to="home">
             <button
               className="bg-indigo-600 text-white px-10 py-5 rounded-full text-xl font-bold hover:scale-105 transition-all shadow-xl shadow-indigo-200"
               style={{ boxShadow: "0 0 25px rgba(99, 102, 241, 0)" }}
               onMouseEnter={e => e.currentTarget.style.boxShadow = "0 0 25px rgba(99,102,241,0.2)"}
               onMouseLeave={e => e.currentTarget.style.boxShadow = "0 20px 40px rgba(99,102,241,0.25)"}
-            >
+              >
               Get Started
             </button>
+              </Link>
           </div>
         </div>
 

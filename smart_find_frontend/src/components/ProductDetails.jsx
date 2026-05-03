@@ -1,57 +1,59 @@
 // ─── ProductDetails Component ──────────────────────────────────────────────────
 // Props:
-//   product : {
-//     id          : string
-//     name        : string
-//     price       : string
-//     originalPrice: string (optional)
-//     image       : string  (url)
-//     description : string
-//     specs       : Array<{ icon, label, value, sub }>
-//     insights    : Array<{ icon, title, body }>
-//     verdict     : string
-//   }
+//   phone : raw phone object from backend
 
-const DEFAULT_PRODUCT = {
-  id: "nexgen-pro-x1",
-  name: "NexGen Pro X1",
-  price: "$1,199.00",
-  originalPrice: "$1,349.00",
-  image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCZOQxev2dz7wW6hiPnWT39SzAEfvwS990N-0O3sveeTcePvk_Ah6SQA8XWrR1GNlpKIuDiP_IlWAkgewWV-4hN16YADL5bwkJLuznjJzz_ItyL7vHlwOXuuJeVy50NngTo9xWtcBJepkH_AydADToe7Pw-56FskKUlX_XOqu93AVZw3QL1qNEQkdMnGur6P5SWm7wygUfOUPq5MHNYsAwuPguFHBfMDnxEMujwrMCuPNJdiphey6uVWOR02UYMcEp0ODdxwVCEKpO2",
-  description:
-    "The NexGen Pro X1 is engineered for those who demand uncompromising performance. With an AI-driven triple-lens system and the latest hyper-efficient silicon, it aligns perfectly with your requirements for high-end mobile photography and heavy multitasking.",
-  specs: [
-    { icon: "memory",                label: "Processor", value: "Snapdragon 8 Gen 3",  sub: "Hyper-threaded AI processing" },
-    { icon: "camera_enhance",        label: "Camera",    value: "200MP Triple Array",   sub: "Periscope zoom & Night vision" },
-    { icon: "battery_charging_full", label: "Battery",   value: "5500mAh / 120W",       sub: "Full charge in 18 minutes" },
-  ],
-  insights: [
+export default function ProductDetails({ phone }) {
+  if (!phone) return null;
+
+  // Build specs array from raw phone fields
+  const specs = [
     {
-      icon: "photo_camera",
-      title: "Photography Priority",
-      body: "Based on your upload of 'Landscape Photography', this sensor offers the best dynamic range in its class.",
+      icon: "memory",
+      label: "Processor",
+      value: phone.processor,
+      sub: `${phone.core} · ${phone.frequency} GHz`,
     },
     {
-      icon: "speed",
-      title: "Power-User Profile",
-      body: "Your multi-app usage data suggests you need at least 12GB of RAM; this device provides 16GB.",
+      icon: "camera_enhance",
+      label: "Camera",
+      value: phone.rear_camera,
+      sub: `Front: ${phone.front_camera}`,
     },
-  ],
-  verdict:
-    "The NexGen Pro X1 outperforms 98% of alternatives for your specific blend of media consumption and professional photography. While more expensive than your base budget, the 3-year residual value makes it a superior investment.",
-};
+    {
+      icon: "battery_charging_full",
+      label: "Battery",
+      value: `${phone.battery} mAh`,
+      sub: `${phone.fast_charging}W fast charging`,
+    },
+    {
+      icon: "developer_board",
+      label: "RAM & Storage",
+      value: `${phone.ram} GB RAM`,
+      sub: phone.ram_inbuilt,
+    },
+    {
+      icon: "screen_rotation",
+      label: "Display",
+      value: `${phone.display_size}" · ${phone.display_hz}Hz`,
+      sub: phone.display_pixels,
+    },
+    {
+      icon: "sim_card",
+      label: "SIM & Network",
+      value: phone.sim,
+      sub: [phone["5G"] ? "5G" : null, phone["4G"] ? "4G" : null, phone.NFC ? "NFC" : null]
+        .filter(Boolean)
+        .join(" · "),
+    },
+  ];
 
-export default function ProductDetails({ product = DEFAULT_PRODUCT }) {
-  const {
-    name,
-    price,
-    originalPrice,
-    image,
-    description,
-    specs  = [],
-    insights = [],
-    verdict,
-  } = product;
+  // Build feature badges
+  const badges = [
+    { label: "5G",     active: phone["5G"]    },
+    { label: "4G",     active: phone["4G"]    },
+    { label: "NFC",    active: phone.NFC      },
+    { label: "VoLTE",  active: phone.VoLTE    },
+  ].filter((b) => b.active);
 
   return (
     <>
@@ -62,161 +64,182 @@ export default function ProductDetails({ product = DEFAULT_PRODUCT }) {
         .custom-scrollbar::-webkit-scrollbar       { width: 4px; }
         .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #e0e3e5; border-radius: 10px; }
+        .spec-card { transition: box-shadow 0.18s, transform 0.18s; }
+        .spec-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(70,72,212,0.08) !important; }
       `}</style>
 
       <section
-        className="flex-1 overflow-y-auto custom-scrollbar p-6 md:p-20"
-        style={{ background: "#ffffff" }}
+        className="custom-scrollbar"
+        style={{ flex: 1, overflowY: "auto", padding: "40px 48px", background: "#f9f9fc" }}
       >
-        <div className="max-w-3xl mx-auto space-y-8">
+        <div style={{ maxWidth: 780, margin: "0 auto", display: "flex", flexDirection: "column", gap: 28 }}>
 
           {/* ── Hero Card ── */}
-          <div
-            className="rounded-[2rem] p-8 md:p-12"
-            style={{ background: "#ffffff", border: "1px solid rgba(199,196,215,0.3)", boxShadow: "0 1px 4px rgba(0,0,0,0.04)" }}
-          >
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-              {/* Left: text */}
-              <div className="order-2 md:order-1">
-                <h1
-                  className="text-5xl font-extrabold text-gray-900 mb-3 leading-tight"
-                  style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", letterSpacing: "-0.02em" }}
-                >
-                  {name}
+          <div style={{
+            background: "#ffffff",
+            borderRadius: 24,
+            border: "1px solid rgba(199,196,215,0.3)",
+            boxShadow: "0 1px 4px rgba(0,0,0,0.04)",
+            padding: "36px 40px",
+          }}>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 40, alignItems: "center" }}>
+
+              {/* Left: info */}
+              <div>
+                {/* Company badge */}
+                <span style={{
+                  display: "inline-block",
+                  background: "rgba(70,72,212,0.08)",
+                  color: "#4648d4",
+                  fontFamily: "'Inter', sans-serif",
+                  fontWeight: 600, fontSize: 12,
+                  padding: "4px 12px", borderRadius: 999,
+                  marginBottom: 12,
+                }}>
+                  {phone.company} · {phone.os_brand} {phone.os_version}
+                </span>
+
+                <h1 style={{
+                  fontFamily: "'Plus Jakarta Sans', sans-serif",
+                  fontWeight: 800, fontSize: 36,
+                  color: "#111827", lineHeight: 1.15,
+                  letterSpacing: "-0.02em", marginBottom: 14,
+                }}>
+                  {phone.name}
                 </h1>
 
-                {/* Pricing */}
-                <div className="flex items-baseline gap-3 mb-6">
-                  <span
-                    className="text-3xl font-bold"
-                    style={{ color: "#4648d4", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
-                  >
-                    {price}
+                {/* Price */}
+                <div style={{ display: "flex", alignItems: "baseline", gap: 10, marginBottom: 18 }}>
+                  <span style={{
+                    fontFamily: "'Plus Jakarta Sans', sans-serif",
+                    fontWeight: 800, fontSize: 30, color: "#4648d4",
+                  }}>
+                    ₹{phone.price.toLocaleString("en-IN")}
                   </span>
-                  {originalPrice && (
-                    <span
-                      className="text-base line-through"
-                      style={{ color: "#767586", fontFamily: "'Inter', sans-serif" }}
-                    >
-                      {originalPrice}
+                </div>
+
+                {/* Match score pill */}
+                <div style={{
+                  display: "inline-flex", alignItems: "center", gap: 8,
+                  background: "linear-gradient(135deg,#4648d4,#6063ee)",
+                  color: "#fff", borderRadius: 999,
+                  padding: "8px 18px", marginBottom: 20,
+                }}>
+                  <span className="material-symbols-outlined" style={{ fontSize: 18 }}>auto_awesome</span>
+                  <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700, fontSize: 14 }}>
+                    {Math.round(phone.match_score)}% Match Score
+                  </span>
+                </div>
+
+                {/* Rating */}
+                <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 20 }}>
+                  <span className="material-symbols-outlined" style={{ color: "#f59e0b", fontSize: 20 }}>star</span>
+                  <span style={{ fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: 15, color: "#111827" }}>
+                    {phone.rating} / 5
+                  </span>
+                </div>
+
+                {/* Network badges */}
+                <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+                  {badges.map((b) => (
+                    <span key={b.label} style={{
+                      background: "rgba(70,72,212,0.07)",
+                      color: "#4648d4",
+                      fontFamily: "'Inter', sans-serif",
+                      fontWeight: 700, fontSize: 11,
+                      padding: "3px 10px", borderRadius: 999,
+                      border: "1px solid rgba(70,72,212,0.15)",
+                    }}>
+                      {b.label}
+                    </span>
+                  ))}
+                  {phone.punch_hole && (
+                    <span style={{
+                      background: "rgba(16,185,129,0.07)", color: "#059669",
+                      fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: 11,
+                      padding: "3px 10px", borderRadius: 999,
+                      border: "1px solid rgba(16,185,129,0.15)",
+                    }}>
+                      Punch Hole
                     </span>
                   )}
                 </div>
-
-                <p
-                  className="text-base leading-relaxed"
-                  style={{ color: "#464554", fontFamily: "'Inter', sans-serif" }}
-                >
-                  {description}
-                </p>
               </div>
 
               {/* Right: image */}
-              <div className="order-1 md:order-2 flex items-center justify-center">
+              <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                 <img
-                  src={image}
-                  alt={name}
-                  className="w-full h-auto max-h-[420px] object-contain drop-shadow-2xl"
+                  src={phone.img}
+                  alt={phone.name}
+                  style={{ maxHeight: 320, objectFit: "contain", filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.12))" }}
                 />
               </div>
             </div>
           </div>
 
           {/* ── Specs Grid ── */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 14 }}>
             {specs.map((spec) => (
               <div
                 key={spec.label}
-                className="p-6 rounded-xl"
-                style={{ background: "#ffffff", border: "1px solid rgba(199,196,215,0.2)", boxShadow: "0 1px 3px rgba(0,0,0,0.04)" }}
+                className="spec-card"
+                style={{
+                  background: "#ffffff", borderRadius: 16, padding: "20px 22px",
+                  border: "1px solid rgba(199,196,215,0.25)",
+                  boxShadow: "0 1px 3px rgba(0,0,0,0.04)",
+                }}
               >
-                <div className="flex items-center gap-2 mb-3" style={{ color: "#4648d4" }}>
-                  <span className="material-symbols-outlined">{spec.icon}</span>
-                  <span
-                    className="text-xs uppercase font-semibold tracking-widest"
-                    style={{ fontFamily: "'Inter', sans-serif", letterSpacing: "0.05em" }}
-                  >
+                <div style={{ display: "flex", alignItems: "center", gap: 8, color: "#4648d4", marginBottom: 10 }}>
+                  <span className="material-symbols-outlined" style={{ fontSize: 20 }}>{spec.icon}</span>
+                  <span style={{
+                    fontFamily: "'Inter', sans-serif", fontWeight: 700,
+                    fontSize: 10, textTransform: "uppercase", letterSpacing: "0.1em",
+                  }}>
                     {spec.label}
                   </span>
                 </div>
-                <h4
-                  className="text-lg font-semibold text-gray-900 leading-snug"
-                  style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
-                >
+                <p style={{
+                  fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700,
+                  fontSize: 14, color: "#111827", margin: "0 0 4px", lineHeight: 1.3,
+                }}>
                   {spec.value}
-                </h4>
-                <p
-                  className="text-sm mt-1"
-                  style={{ color: "#464554", fontFamily: "'Inter', sans-serif" }}
-                >
+                </p>
+                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 12, color: "#6b7280", margin: 0 }}>
                   {spec.sub}
                 </p>
               </div>
             ))}
           </div>
 
-          {/* ── SmartFind Intelligence Report ── */}
-          <div
-            className="p-8 md:p-12 rounded-2xl text-white"
-            style={{ background: "linear-gradient(135deg, #4648d4 0%, #6063ee 100%)" }}
-          >
-            {/* Report header */}
-            <h3
-              className="text-2xl font-bold mb-8 flex items-center gap-2"
-              style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
-            >
-              <span className="material-symbols-outlined">auto_awesome</span>
-              SmartFind Intelligence Report
+          {/* ── Extra Details ── */}
+          <div style={{
+            background: "#ffffff", borderRadius: 20, padding: "28px 32px",
+            border: "1px solid rgba(199,196,215,0.25)",
+            boxShadow: "0 1px 3px rgba(0,0,0,0.04)",
+            display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px 32px",
+          }}>
+            <h3 style={{
+              fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700,
+              fontSize: 16, color: "#111827", margin: "0 0 16px",
+              gridColumn: "1 / -1",
+            }}>
+              More Details
             </h3>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {/* Insights list */}
-              <div className="space-y-6">
-                {insights.map((insight) => (
-                  <div key={insight.title} className="flex items-start gap-6">
-                    <span
-                      className="material-symbols-outlined p-2 rounded-lg shrink-0"
-                      style={{ background: "rgba(255,255,255,0.2)" }}
-                    >
-                      {insight.icon}
-                    </span>
-                    <div>
-                      <h5
-                        className="font-bold mb-1"
-                        style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
-                      >
-                        {insight.title}
-                      </h5>
-                      <p
-                        className="text-sm leading-relaxed"
-                        style={{ color: "rgba(255,255,255,0.8)", fontFamily: "'Inter', sans-serif" }}
-                      >
-                        {insight.body}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* AI Verdict box */}
-              <div
-                className="p-6 rounded-xl"
-                style={{ background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.2)", backdropFilter: "blur(8px)" }}
-              >
-                <h5
-                  className="font-bold mb-3"
-                  style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
-                >
-                  AI Verdict
-                </h5>
-                <p
-                  className="text-sm leading-relaxed"
-                  style={{ color: "rgba(255,255,255,0.9)", fontFamily: "'Inter', sans-serif" }}
-                >
-                  "{verdict}"
+            {[
+              { label: "Memory Card",  value: phone.memory_card },
+              { label: "Extended Upto", value: phone.extended_upto ?? "Not Supported" },
+              { label: "Punch Hole",   value: phone.punch_hole ? "Yes" : "No" },
+              { label: "Specs Score",  value: `${phone.specs_score} / 100` },
+            ].map((row) => (
+              <div key={row.label}>
+                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", color: "#9ca3af", margin: "0 0 3px" }}>
+                  {row.label}
+                </p>
+                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, fontWeight: 600, color: "#111827", margin: 0 }}>
+                  {row.value}
                 </p>
               </div>
-            </div>
+            ))}
           </div>
 
         </div>
